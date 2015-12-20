@@ -8,13 +8,14 @@ import java.util.Date;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
-
+import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GLContext;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiButtonLanguage;
@@ -203,6 +204,11 @@ public class GuiMeMainMenu extends GuiScreen implements GuiYesNoCallback
         this.drawString(this.fontRendererObj, s, 2, this.height - 10, -1);
         String s1 = "Copyright Mojang AB. Do not distribute!";
         this.drawString(this.fontRendererObj, s1, this.width - this.fontRendererObj.getStringWidth(s1) - 2, this.height - 10, -1);
+        
+        float scale = 5.0F;
+        GL11.glScalef(scale, scale, scale);
+        drawString(this.fontRendererObj, "§cClient§fName", this.width / 2 / scale - 25.0F, this.height / 5 / scale - 0.0F, 16777215);
+        GL11.glScalef(1.0F / scale, 1.0F / scale, 1.0F / scale);
 
         if (this.openGLWarning1 != null && this.openGLWarning1.length() > 0)
         {
